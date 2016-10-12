@@ -7,7 +7,7 @@ plugins {
     id 'com.qixalite.spongestart' version '1.5.2'
 }
 
-group 'com.almuramc'
+group 'com.ferusgrim'
 version '1.0-SNAPSHOT'
 
 defaultTasks 'licenseFormat'
