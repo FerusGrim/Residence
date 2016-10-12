@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id 'maven'
+    id 'com.github.hierynomus.license' version '0.12.1'
+    id 'com.qixalite.spongestart' version '1.5.2'
+}
+
+group 'com.almuramc'
+version '1.0-SNAPSHOT'
+
+defaultTasks 'licenseFormat'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'sponge'
+        url = 'http://repo.spongepowered.org/maven'
+    }
+    maven {
+        name = 'jitpack'
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    compile 'org.spongepowered:spongeapi:5.0.0+'
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+license {
+    ext.name = project.name
+    ext.inceptionYear = project.inceptionYear
+    ext.currentYear = project.currentYear
+
+    header file('HEADER.txt')
+
+    sourceSets = project.sourceSets
+
+    ignoreFailures false
+    strictCheck true
+
+    mapping {
+        java = 'SLASHSTAR_STYLE'
+    }
+}
+
+spongestart {
+    eula true
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.14.1'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
